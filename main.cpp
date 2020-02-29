@@ -6,7 +6,8 @@
 #include <QDirIterator>
 #include <QDir>
 #include <QtSql/QtSql>
-class myApp:public QCoreApplication{
+#include "fieldfileloader.h"
+/*class myApp:public QCoreApplication{
 private :
     QFileSystemWatcher fileSystemWatcher;
     QFile * fieldFile;
@@ -132,14 +133,20 @@ public :
         });
         loop.exec();
     }
-};
+};*/
 
 int main(int argc, char *argv[])
 {
-    myApp a(argc, argv);
-    a.manageDB();
-    a.newFielFile();
 
-    return a.exec();
+    if(argc < 4){
+        qDebug() << "wrong number of paramter \n Expected "
+                    "<file name > <log directory> < log directory> < load type >";
+        return -1;
+    }
+    QString fileName = QString(argv[1]);
+    FieldFileLoader* fieldLoad = new FieldFileLoader(fileName);
+    fieldLoad->loadFile();
+
+    return 0;
 }
 
