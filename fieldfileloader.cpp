@@ -51,10 +51,13 @@ void FieldFileLoader::loadFile() {
           }
 
           // check doublon
-          int tmpIndex = lineContent.size();
+          int tmpIndex = line.size();
           int currentIndex = computeUniqueIndexLine(line,&tmpIndex);
           if(!linexIndex.contains(currentIndex))
             linexIndex.push_back(currentIndex);
+          else
+              qDebug() << "doublon found \n";
+
           // insert in db
           QSqlQuery query;
           query.prepare("INSERT INTO stc_field (ma_name, position, x,y,comment) "
@@ -89,16 +92,20 @@ void FieldFileLoader::loadFile() {
     else
         qDebug() << "Error in readind " << getReceivedFile();
 }
-
+int FieldFileLoader::cantor(int a,int b){
+    return 0.5*((a+b)*(a+b) + a +  3*b);
+}
 int FieldFileLoader::computeUniqueIndexLine(QString &str, int *index) {
 
     if(*index >= 2) {
-        (*index)--;
-        return computeUniqueIndexLine( str,index);
+        //(*index)--;
+        return cantor(computeUniqueIndexLine( str,index),str.toStdString()[--(*index)]);
     }
     else {
-        return (int)(0.5*((str[*index] + str[*index-1])*(str[*index] + str[*index-1])
-                +  str[*index] + 3*str[*index-1]));
+        return cantor(str.toStdString()[*index] , str.toStdString()[*index-1]);
+
+
     }
 }
+
 

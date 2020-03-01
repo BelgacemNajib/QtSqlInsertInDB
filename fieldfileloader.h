@@ -21,6 +21,8 @@ public:
      * @return the unique index
      */
     int computeUniqueIndexLine(QString& str, int *index);
+private:
+    int cantor(int a, int b);
 };
 
 #endif // fieldFileLoader_H

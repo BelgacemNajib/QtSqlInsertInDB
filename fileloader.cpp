@@ -4,7 +4,7 @@
 
 FileLoader::FileLoader()
 {
- qDebug() << "principal object";
+
 }
 
 FileLoader::~FileLoader(){}
