@@ -7,6 +7,12 @@
 #include <QDir>
 #include <QtSql/QtSql>
 #include "fieldfileloader.h"
+#include "diefileloader.h"
+#include "stifileloader.h"
+#include "spmfileloader.h"
+#include "tbxfileloader.h"
+#include "hdrfileloader.h"
+#include "imgfileloader.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,18 +29,26 @@ int main(int argc, char *argv[])
         FieldFileLoader* fieldLoad = new FieldFileLoader(fileName);
         fieldLoad->loadFile();
     } else if (extend == "die") {
-        // TODO
+        // TODO: incomplet
+        DieFileLoader* dieLoad = new DieFileLoader(fileName);
+        dieLoad->loadFile();
     } else if (extend == "img") {
-        // TODO
+        // TODO: incomplet
+        ImgFileLoader* imgLoad = new ImgFileLoader(fileName);
+        imgLoad->loadFile();
     } else if (extend == "sti") {
-        // TODO
+        // TODO: incomplet
+        StiFileLoader* stiLoad = new StiFileLoader(fileName);
+        stiLoad->loadFile();
     } else if (extend == "spm") {
-        // TODO
+        // TODO: incomplet
+        SpmFileLoader* spmLoad = new SpmFileLoader(fileName);
+        spmLoad->loadFile();
     } else if (extend == "hdr") {
-        // TODO
+        // TODO: incomplet
+        HdrFileLoader* hdrLoad = new HdrFileLoader(fileName);
+        hdrLoad->loadFile();
     }
-
-
 
     return 0;
 }

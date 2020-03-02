@@ -97,14 +97,11 @@ int FieldFileLoader::cantor(int a,int b){
 }
 int FieldFileLoader::computeUniqueIndexLine(QString &str, int *index) {
 
-    if(*index >= 2) {
-        //(*index)--;
+    if(*index >= 2) {       
         return cantor(computeUniqueIndexLine( str,index),str.toStdString()[--(*index)]);
     }
     else {
         return cantor(str.toStdString()[*index] , str.toStdString()[*index-1]);
-
-
     }
 }
 
